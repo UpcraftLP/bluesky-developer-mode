@@ -1,10 +1,16 @@
 {
     "$schema": "https://json.schemastore.org/chrome-manifest",
     "manifest_version": 3,
-    "name": "Bluesky-Scope",
-    "version": "1.0.0",
+    "name": "Bluesky Developer Mode",
+    "version": "0.1.0",
     "description": "Add developer insight for Bluesky",
     "homepage_url": "https://upcraft.dev",
+    "icons": {
+        "16": "src/assets/icons/16x.png",
+        "32": "src/assets/icons/32x.png",
+        "48": "src/assets/icons/48x.png",
+        "128": "src/assets/icons/128x.png"
+    },
     "permissions": [
         "activeTab"
     ],
