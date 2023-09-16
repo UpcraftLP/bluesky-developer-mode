@@ -31,9 +31,9 @@ jobs:
         env:
           SHA_SHORT: ${{ steps.get_sha.outputs.GITHUB_SHA_SHORT }}
       - name: Package Extension
-        run: zip -qq -r -v chrome-${{ steps.get_sha.outputs.GITHUB_SHA }}.zip *
+        run: zip -qq -r -v ../chrome-${{ steps.get_sha.outputs.GITHUB_SHA }}.zip *
         working-directory: dist
       - uses: actions/upload-artifact@v3
         with:
           name: chrome-extension-${{ github.event.repository.name }}-${{ steps.get_sha.outputs.GITHUB_SHA_SHORT }}
-          path: dist/chrome-${{ steps.get_sha.outputs.GITHUB_SHA }}.zip
+          path: dist
