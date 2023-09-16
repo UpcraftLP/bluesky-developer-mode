@@ -1,0 +1,40 @@
+{
+    "$schema": "https://json.schemastore.org/chrome-manifest",
+    "manifest_version": 3,
+    "name": "Bluesky-Scope",
+    "version": "1.0.0",
+    "description": "Add developer insight for Bluesky",
+    "homepage_url": "https://upcraft.dev",
+    "permissions": [
+        "activeTab"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "https://bsky.app/profile/*",
+                "https://app.bsky-sandbox.dev/profile/*"
+            ],
+            "js": [
+                "src/inject/profilePage.ts"
+            ],
+            "run_at": "document_end",
+            "world": "ISOLATED",
+            "match_about_blank": false
+        },
+        {
+            "matches": [
+                "https://bsky.app/*",
+                "https://app.bsky-sandbox.dev/*"
+            ],
+            "js": [
+                "src/inject/allPages.ts"
+            ],
+            "run_at": "document_end",
+            "world": "ISOLATED",
+            "match_about_blank": false
+        }
+    ],
+    "action": {
+        "default_popup": "src/popup/index.html"
+    }
+}
