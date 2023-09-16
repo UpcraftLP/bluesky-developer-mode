@@ -4,7 +4,7 @@
     "name": "Bluesky Developer Mode",
     "version": "0.1.1",
     "description": "Add useful developer features to the BlueSky AppView, like context menu buttons to copy a user's DID",
-    "homepage_url": "https://upcraft.dev",
+    "homepage_url": "https://github.com/UpcraftLP/bluesky-developer-mode",
     "icons": {
         "16": "src/assets/icons/16x.png",
         "32": "src/assets/icons/32x.png",
