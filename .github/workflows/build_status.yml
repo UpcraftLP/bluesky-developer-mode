@@ -1,0 +1,39 @@
+name: Build Status
+
+on:
+  push:
+    paths-ignore:
+      - '.github/**'
+    branches:
+      - '*'
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'yarn'
+      - name: Get Github SHA Short
+        id: get_sha
+        run: |
+            echo "GITHUB_SHA=${GITHUB_SHA}" >> $GITHUB_OUTPUT
+            echo "GITHUB_SHA_SHORT=${GITHUB_SHA::7}" >> $GITHUB_OUTPUT
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+      - name: Check
+        run: yarn run check
+      - name: Build
+        run: yarn run build
+        env:
+          SHA_SHORT: ${{ steps.get_sha.outputs.GITHUB_SHA_SHORT }}
+      - name: Package Extension
+        run: zip -qq -r -v chrome-${{ steps.get_sha.outputs.GITHUB_SHA }}.zip *
+        working-directory: dist
+      - uses: actions/upload-artifact@v3
+        with:
+          name: chrome-extension-${{ github.event.repository.name }}-${{ steps.get_sha.outputs.GITHUB_SHA_SHORT }}
+          path: dist/chrome-${{ steps.get_sha.outputs.GITHUB_SHA }}.zip
