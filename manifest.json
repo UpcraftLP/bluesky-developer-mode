@@ -9,6 +9,7 @@
         "16": "src/assets/icons/16x.png",
         "32": "src/assets/icons/32x.png",
         "48": "src/assets/icons/48x.png",
+        "64": "src/assets/icons/64x.png",
         "128": "src/assets/icons/128x.png"
     },
     "permissions": [
