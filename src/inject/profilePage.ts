@@ -20,7 +20,7 @@ if (result?.groups?.handle) {
                 });
                 injectMenuItem(button, (menu, item) => {
                     const element = menu.firstChild as HTMLElement;
-                    element.appendChild(item);
+                    element.firstChild!.after(item);
                 });
                 added = true;
             }
