@@ -19,26 +19,30 @@ export function injectMenuItem(item: HTMLElement, insertFn: (menu: HTMLElement, 
         menuItem.appendChild(inner);
 
         item.classList.add('css-146c3p1', 'r-1i10wst', 'r-lrvibr');
-        item.style.color = 'rgb(0, 0, 0)';
+        item.style.color = 'var(--text)';
         inner.appendChild(item);
 
         const icon = document.createElement('div');
         icon.className = 'css-175oi2r';
         icon.innerHTML = `
         <svg viewBox="0 0 512 512" height="20" width="20" tabindex="-1">
-            <path fill="#000000"
+            <path fill="var(--text)"
                 d="M80 96v16c0 17.7 14.3 32 32 32h60.8c16.6-28.7 47.6-48 83.2-48h62c-7.1-27.6-32.2-48-62-48H215.4C211.6 20.9 188.2 0 160 0s-51.6 20.9-55.4 48H64C28.7 48 0 76.7 0 112V384c0 35.3 28.7 64 64 64h96V400H64c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H80zm64-40a16 16 0 1 1 32 0 16 16 0 1 1 -32 0zM256 464c-8.8 0-16-7.2-16-16V192c0-8.8 7.2-16 16-16H384v48c0 17.7 14.3 32 32 32h48V448c0 8.8-7.2 16-16 16H256zm192 48c35.3 0 64-28.7 64-64V227.9c0-12.7-5.1-24.9-14.1-33.9l-51.9-51.9c-9-9-21.2-14.1-33.9-14.1H256c-35.3 0-64 28.7-64 64V448c0 35.3 28.7 64 64 64H448z">
             </path>
         </svg>
         `;
         inner.appendChild(icon);
+
+        // tried using rgba(var(--text), 0.07) but that didn't seem to work :(
+        const hoverColor = document.documentElement.classList.contains("colorMode--dark") ? 'rgba(255, 255, 255, 0.07)' : 'rgba(0, 0, 0, 0.07)';
+
         menuItem.addEventListener('focus', () => {
             menuItem.dataset.highlighted = "";
-            inner.style.backgroundColor = 'rgb(0, 0, 0, 0.07)';
+            inner.style.backgroundColor = hoverColor;
         });
         menuItem.addEventListener('mouseenter', () => {
             menuItem.dataset.highlighted = "";
-            inner.style.backgroundColor = 'rgb(0, 0, 0, 0.07)';
+            inner.style.backgroundColor = hoverColor;
         });
         menuItem.addEventListener('blur', () => {
             menuItem.dataset.highlighted = undefined;
